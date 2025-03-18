@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>blue</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="player">
+      <div class="carousel">
+        <img src="/assets/imagen1.jpg" class="slide" style="opacity: 1" />
+        <img src="/assets/imagen2.jpg" class="slide" style="opacity: 0" />
+        <img src="assets/img3.jpg" class="slide" style="opacity: 0" />
+        <img src="assets/img4.jpg" class="slide" style="opacity: 0" />
+        <img src="assets/img5.jpg" class="slide" style="opacity: 0" />
+      </div>
+
+      <div class="song-info">
+        <div>
+          <h3 id="song-title">blue</h3>
+          <p id="artist-name">yung kai</p>
+        </div>
+        <div class="img-container">
+          <img src="/assets/heart.svg" alt="heart" />
+        </div>
+      </div>
+
+      <div class="progress-bar">
+        <div class="progress"></div>
+      </div>
+
+      <div class="controls">
+        <button onclick="prevSong()">⏮</button>
+        <button onclick="togglePlay()">▶</button>
+        <button onclick="nextSong()">⏭</button>
+      </div>
+
+      <audio id="audio">
+        <source src="/assets/blue.opus" type="audio/mpeg" />
+      </audio>
+
+      <div class="code">
+        <img src="/assets/code.png" alt="" />
+      </div>
+    </div>
+
+    <script>
+      let slides = document.querySelectorAll(".slide");
+      let currentSlide = 0;
+
+      function changeSlide() {
+        slides[currentSlide].style.opacity = 0;
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].style.opacity = 1;
+      }
+      setInterval(changeSlide, 3000);
+
+      let currentSong = 0;
+      let audio = document.getElementById("audio");
+      let songTitle = document.getElementById("song-title");
+      let artistName = document.getElementById("artist-name");
+      let progress = document.querySelector(".progress");
+
+      const songs = [
+        { src: "/assets/blue.opus", title: "blue", artist: "yung kai" },
+        // Agrega más canciones aquí
+      ];
+
+      function loadSong(index) {
+        audio.src = songs[index].src;
+        songTitle.textContent = songs[index].title;
+        artistName.textContent = songs[index].artist;
+        audio.play();
+      }
+
+      function togglePlay() {
+        if (audio.paused) {
+          audio.play();
+        } else {
+          audio.pause();
+        }
+      }
+
+      function nextSong() {
+        currentSong = (currentSong + 1) % songs.length;
+        loadSong(currentSong);
+      }
+
+      function prevSong() {
+        currentSong = (currentSong - 1 + songs.length) % songs.length;
+        loadSong(currentSong);
+      }
+
+      audio.ontimeupdate = () => {
+        let percent = (audio.currentTime / audio.duration) * 100;
+        progress.style.width = percent + "%";
+      };
+    </script>
+  </body>
+</html>
