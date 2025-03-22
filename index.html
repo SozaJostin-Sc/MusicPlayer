@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <!-- Music player container -->
     <div class="player">
+      <!-- Image carousel for album covers or visuals -->
       <div class="carousel">
         <img src="/assets/imagen1.jpg" class="slide" style="opacity: 1" />
         <img src="/assets/imagen2.jpg" class="slide" style="opacity: 0" />
@@ -16,35 +18,42 @@
         <img src="assets/img5.jpg" class="slide" style="opacity: 0" />
       </div>
 
+      <!-- Song information section -->
       <div class="song-info">
         <div>
           <h3 id="song-title">blue</h3>
           <p id="artist-name">yung kai</p>
         </div>
+        <!-- Like button (heart icon) -->
         <div class="img-container">
           <img src="/assets/heart.svg" alt="heart" />
         </div>
       </div>
 
+      <!-- Progress bar for the song -->
       <div class="progress-bar">
         <div class="progress"></div>
       </div>
 
+      <!-- Player controls -->
       <div class="controls">
         <button onclick="prevSong()">⏮</button>
         <button onclick="togglePlay()">▶</button>
         <button onclick="nextSong()">⏭</button>
       </div>
 
+      <!-- Audio element for playing music -->
       <audio id="audio">
         <source src="/assets/blue.opus" type="audio/mpeg" />
       </audio>
 
+      <!-- QR code section (possibly for sharing or accessing more content) -->
       <div class="code">
-        <img src="/assets/code.png" alt="" />
+        <img src="/assets/code.png" alt="QR code" />
       </div>
     </div>
 
+    <!-- JavaScript file for functionality -->
     <script src="script.js"></script>
   </body>
 </html>
